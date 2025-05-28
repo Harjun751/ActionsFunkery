@@ -1,4 +1,4 @@
-const { Pool } = require('pg');
+const { Pool } = require("pg");
 const secrets = require(`./secrets`);
 const logger = require(`../logger`);
 
@@ -6,13 +6,12 @@ const user = secrets.getUser();
 const pw = secrets.getPassword();
 
 const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: secrets.getUser(),
-    password: secrets.getPassword(),
-    database: 'UnderStance',
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  user: secrets.getUser(),
+  password: secrets.getPassword(),
+  database: "UnderStance",
 });
-
 
 async function getQuestions() {
   try {
@@ -29,7 +28,8 @@ async function getQuestionWithID(id) {
     const val = parseInt(id);
     try {
       const rows = await pool.query(
-        `SELECT * FROM "Issue" WHERE "IssueID" = $1`, [val]
+        `SELECT * FROM "Issue" WHERE "IssueID" = $1`,
+        [val],
       );
       return rows.rows;
     } catch (err) {
@@ -95,7 +95,7 @@ async function getPartyWithID(id) {
     try {
       const rows = await pool.query(
         `SELECT * FROM "Party" WHERE "PartyID" = $1::integer`,
-        [val]
+        [val],
       );
       return rows.rows;
     } catch (err) {

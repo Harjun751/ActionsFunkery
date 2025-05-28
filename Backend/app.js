@@ -14,7 +14,6 @@ app.use(
 );
 
 app.get("/questions", async (req, res) => {
-
   const id = req.query.ID;
   if (id === undefined) {
     // simply return all
@@ -24,7 +23,6 @@ app.get("/questions", async (req, res) => {
     } catch (error) {
       logger.error(error.stack);
       res.status(500).send({ error: "Failed to fetch questions" });
-
     }
   } else {
     if (!isNaN(id)) {
@@ -46,7 +44,6 @@ app.get("/stances", async (req, res) => {
   var IssueID = req.query.IssueID;
   var PartyID = req.query.PartyID;
   if (
-
     StanceID === undefined &&
     IssueID === undefined &&
     PartyID === undefined
@@ -72,7 +69,8 @@ app.get("/stances", async (req, res) => {
         // parseInt(null) == NaN
         // We want to pass null if filter is not being used
         // so coerce into null if required with ||
-        const data = await db.getStancesFiltered(parseInt(StanceID) || null,
+        const data = await db.getStancesFiltered(
+          parseInt(StanceID) || null,
           parseInt(IssueID) || null,
           parseInt(PartyID) || null,
         );

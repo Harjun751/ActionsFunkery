@@ -1,12 +1,12 @@
-const { Pool }  = require("pg");
+const { Pool } = require("pg");
 
 jest.mock("pg");
 
 // Mock db.query call that returns [rows,fields]
 let mockQuery = jest
   .fn()
-  .mockResolvedValue({ rows: 
-    [{ IssueID: 1, Description: "Test Issue", Summary: "Summary" }],
+  .mockResolvedValue({
+    rows: [{ IssueID: 1, Description: "Test Issue", Summary: "Summary" }],
   });
 
 Pool.mockReturnValue({
@@ -37,8 +37,8 @@ describe("mock GET question", () => {
 
 describe("mock GET question with filter", () => {
   test("should return 1 row from Issue", async () => {
-    mockQuery.mockResolvedValueOnce({ rows:
-      [{ IssueID: 1, Description: "Test Issue", Summary: "Summary" }],
+    mockQuery.mockResolvedValueOnce({
+      rows: [{ IssueID: 1, Description: "Test Issue", Summary: "Summary" }],
     });
     const result = await dal.getQuestionWithID(1);
     expect(result).toEqual([
@@ -102,7 +102,7 @@ describe("mock GET stance with filter", () => {
   });
 
   test("should return 2 stances with issue filter", async () => {
-    mockQuery.mockResolvedValueOnce({rows : fakeStances});
+    mockQuery.mockResolvedValueOnce({ rows: fakeStances });
     const result = await dal.getStancesFiltered(null, 1, null);
     expect(result).toEqual(fakeStances);
   });
@@ -139,7 +139,9 @@ describe("mock GET stance with filter", () => {
 
   test("should throw error on DB fail", async () => {
     mockQuery.mockRejectedValueOnce(new Error("DB exploded"));
-    await expect(dal.getStancesFiltered(1,null,null)).rejects.toThrow("DB exploded");
+    await expect(dal.getStancesFiltered(1, null, null)).rejects.toThrow(
+      "DB exploded",
+    );
   });
 
   test("should error due to invalid argument", async () => {
@@ -179,12 +181,12 @@ describe("mock GET party", () => {
 
 describe("mock GET party filtered", () => {
   test("should return party with ID=1", async () => {
-    mockQuery.mockResolvedValueOnce({ rows: [parties[0]]});
+    mockQuery.mockResolvedValueOnce({ rows: [parties[0]] });
     const result = await dal.getPartyWithID(1);
     expect(result).toEqual([parties[0]]);
   });
   test("should return party with ID=2", async () => {
-    mockQuery.mockResolvedValueOnce({ rows: [parties[1]]});
+    mockQuery.mockResolvedValueOnce({ rows: [parties[1]] });
     const result = await dal.getPartyWithID(2);
     expect(result).toEqual([parties[1]]);
   });
