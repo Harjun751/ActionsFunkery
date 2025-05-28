@@ -30,12 +30,12 @@ services:
     secrets:
       - db_user
       - db_password
-      - postgres_conn
   frontend:
     build: Frontend/
     environment:
-      BACKEND_HOST: "backend"
-      BACKEND_PORT: 3000
+      BACKEND_ENDPOINT: "http://backend:3000" 
+      # Uncomment below for https on localhost using self-signed cert
+      # __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS: "localhost"
     ports:
       - 5173:5173
 secrets:
