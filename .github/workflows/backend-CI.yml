@@ -8,25 +8,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 'latest'
+
       - run: npm i
         working-directory: Backend/
+
       - name: Begin running tests
-        run: npm run testcov
+        run: ENV=test npx jest unit --coverage
         working-directory: ./Backend/
+
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: (!cancelled())
         with:
           files: |
-            Backend/coverage/**/*.xml
-            Backend/coverage/**/*.json
+            Backend/coverage/results.xml
+
       - name: Upload coverage report to codecov
         uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: Backend/coverage/lcov.info
+
       - name: Format code using prettier
         uses: creyD/prettier_action@v4.5
         with:
