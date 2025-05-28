@@ -34,8 +34,6 @@ services:
     build: Frontend/
     environment:
       BACKEND_ENDPOINT: "http://backend:3000" 
-      # Uncomment below for https on localhost using self-signed cert
-      # __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS: "localhost"
     ports:
       - 5173:5173
 secrets:

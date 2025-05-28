@@ -14,15 +14,15 @@ function getSecret(path) {
 }
 
 function getUser() {
-    return getSecret(process.env.SECRET_USER_PATH);
+  return getSecret(process.env.SECRET_USER_PATH);
 }
 
 function getPassword() {
-    return getSecret(process.env.SECRET_PASSWORD_PATH);
+  return getSecret(process.env.SECRET_PASSWORD_PATH);
 }
 
 function getConnString() {
-    return getSecret(process.env.SECRET_DB_CONN_PATH);
+  return getSecret(process.env.SECRET_DB_CONN_PATH);
 }
 
 module.exports = {
