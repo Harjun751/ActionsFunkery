@@ -42,5 +42,5 @@ jobs:
       - name: Format code using prettier
         uses: creyD/prettier_action@v4.5
         with:
-          working_directory: ./Backend/
+          prettier_options: --write /home/runner/work/ActionsFunkery/ActionsFunkery/Backend/**/*.{js,jsx,ts,tsx}
           file_pattern: "*.js"
