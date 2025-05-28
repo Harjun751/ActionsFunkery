@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/Harjun751/ActionsFunkery/graph/badge.svg?token=8IX0UD0O0E)](https://codecov.io/gh/Harjun751/ActionsFunkery)
+
 # API Docs
 View API documentation on [swaggerhub here](https://app.swaggerhub.com/apis/harjun7517/under-stance_backend_api/0.1.0)
 TODO: Action to update API Docs on push to main or something
