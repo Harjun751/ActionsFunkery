@@ -12,6 +12,7 @@ jobs:
         with:
           node-version: 'latest'
       - run: npm i
+        working-directory: Backend/
       - name: Begin running tests
         run: npm run testcov
         working-directory: ./Backend/
