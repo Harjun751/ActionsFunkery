@@ -13,10 +13,6 @@ app.use(
   }),
 );
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
 app.get("/questions", async (req, res) => {
 
   const id = req.query.ID;
