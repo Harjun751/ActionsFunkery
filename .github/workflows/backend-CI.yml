@@ -1,4 +1,7 @@
 name: CI script for backend
+permissions:
+  checks: write
+  pull-requests: write
 
 on:
   pull_request:
