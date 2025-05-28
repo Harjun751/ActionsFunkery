@@ -2,18 +2,15 @@ const postgres = require('postgres')
 const secrets = require('./secrets')
 const logger = require('../logger')
 
-const user = secrets.getUser();
-const pw = secrets.getPassword();
-
 var sql;
-if (process.env.DB_CONNECTION_STRING) {
-    sql = postgres(process.env.DB_CONNECTION_STRING, {});
+if (process.env.SECRET_DB_CONN_PATH) {
+    sql = postgres(secrets.getConnString(), {});
 } else {
     sql = postgres({
         host: process.env.DB_HOST,
         port: process.env.DB_PORT,
-        username: user,
-        password: pw,
+        username: secrets.getUser(),
+        password: secrets.getPassword(),
         database: 'UnderStance',
     });
 }

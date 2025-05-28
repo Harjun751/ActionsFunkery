@@ -30,6 +30,7 @@ services:
     secrets:
       - db_user
       - db_password
+      - postgres_conn
   frontend:
     build: Frontend/
     environment:

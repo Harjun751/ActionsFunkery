@@ -21,7 +21,12 @@ function getPassword() {
     return getSecret(process.env.SECRET_PASSWORD_PATH);
 }
 
+function getConnString() {
+    return getSecret(process.env.SECRET_DB_CONN_PATH);
+}
+
 module.exports = {
   getUser,
   getPassword,
+  getConnString,
 };
