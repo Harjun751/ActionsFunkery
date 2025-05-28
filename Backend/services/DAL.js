@@ -99,13 +99,11 @@ async function getPartyWithID(id) {
     }
 }
 
-
 module.exports = {
-    getStancesFiltered,
-    getStances,
-    getQuestionWithID,
-    getQuestions,
-    getParties,
-    getPartyWithID,
-}
-
+  getStancesFiltered,
+  getStances,
+  getQuestionWithID,
+  getQuestions,
+  getParties,
+  getPartyWithID,
+};

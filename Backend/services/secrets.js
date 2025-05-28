@@ -1,16 +1,16 @@
-const fs = require('fs');
+const fs = require("fs");
 
 function getSecret(path) {
-    if (process.env.ENV === "test") {
-        return "dummy";
-    }
-    try {
-        const data = fs.readFileSync(path, { encoding: 'utf8', flag: 'r' });
-        return data.trim();
-    } catch (err) {
-        console.error(`Error occured while reading secret! ${err}`);
-        return {};
-    }
+  if (process.env.ENV === "test") {
+    return "dummy";
+  }
+  try {
+    const data = fs.readFileSync(path, { encoding: "utf8", flag: "r" });
+    return data.trim();
+  } catch (err) {
+    console.error(`Error occured while reading secret! ${err}`);
+    return {};
+  }
 }
 
 function getUser() {
@@ -22,7 +22,6 @@ function getPassword() {
 }
 
 module.exports = {
-    getUser,
-    getPassword,
-}
-
+  getUser,
+  getPassword,
+};
