@@ -25,6 +25,8 @@ services:
     environment:
       DB_HOST: "db"
       DB_PORT: 3306
+      SECRET_USER_PATH: "/run/secrets/mysql_user"
+      SECRET_PASSWORD_PATH: "/run/secrets/mysql_password"
     secrets:
       - mysql_user
       - mysql_password

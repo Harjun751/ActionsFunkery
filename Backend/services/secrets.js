@@ -14,11 +14,11 @@ function getSecret(path) {
 }
 
 function getUser() {
-  return getSecret("/run/secrets/mysql_user");
+    return getSecret(process.env.SECRET_USER_PATH);
 }
 
 function getPassword() {
-  return getSecret("/run/secrets/mysql_password");
+    return getSecret(process.env.SECRET_PASSWORD_PATH);
 }
 
 module.exports = {
