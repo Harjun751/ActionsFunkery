@@ -7,7 +7,7 @@ const pw = secrets.getPassword();
 
 var sql;
 if (process.env.DB_CONNECTION_STRING) {
-    sql = postgres(process.ENV.DB_CONNECTION_STRING);
+    sql = postgres(process.env.DB_CONNECTION_STRING, {});
 } else {
     sql = postgres({
         host: process.env.DB_HOST,
