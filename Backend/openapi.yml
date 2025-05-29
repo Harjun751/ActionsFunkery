@@ -3,7 +3,7 @@ info:
   title: UnderStance Backend API
   description: >
     Backend API for the UnderStance web app. See our project page for more information: https://github.com/Harjun751/UnderStance
-  version: 0.1.0
+  version: 0.1.1
 paths:
   /questions:
     get:
@@ -17,7 +17,7 @@ paths:
             type: integer
       responses:
         "200":
-          description: Successful GET
+          description: Successful GET of Issues
           content:
             application/json:
               schema:

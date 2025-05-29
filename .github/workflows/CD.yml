@@ -1,4 +1,4 @@
-name: CI script for backend
+name: CD script
 
 on:
   push:
@@ -13,10 +13,7 @@ jobs:
 
       - name: Update Swaggerhub API spec
         run: |
-          curl -X POST "https://api.swaggerhub.com/apis/harjun7517/under-stance_backend_api"\
-          -H "Authorization: ${{ secrets.SWAGGERHUB_KEY }}" \
-          -H "Content-Type: application/yaml" \
-          --data-binary @Backend/openapi.yml
+          curl -X POST "https://api.swaggerhub.com/apis/harjun7517/under-stance_backend_api" -H "Authorization: ${{ secrets.SWAGGERHUB_KEY }}" -H "Content-Type: application/yaml" --data-binary @Backend/openapi.yml
 
       - name: Trigger render frontend deploy
         run: |
