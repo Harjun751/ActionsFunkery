@@ -5,13 +5,21 @@ const logger = require(`../logger`);
 const user = secrets.getUser();
 const pw = secrets.getPassword();
 
-const pool = new Pool({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  user: secrets.getUser(),
-  password: secrets.getPassword(),
-  database: "UnderStance",
-});
+var pool;
+
+if (process.env.SECRET_DB_CONN_PATH) {
+    let connectionString = secrets.getConnString();
+    pool = new Pool({ connectionString, });
+
+} else {
+    pool = new Pool({
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT,
+      user: secrets.getUser(),
+      password: secrets.getPassword(),
+      database: "UnderStance",
+    });
+}
 
 async function getQuestions() {
   try {
