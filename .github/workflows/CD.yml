@@ -1,0 +1,37 @@
+name: CI script for backend
+
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Update Swaggerhub API spec
+        run: |
+          curl -X POST "https://api.swaggerhub.com/apis/harjun7517/under-stance_backend_api"\
+          -H "Authorization: ${{ secrets.SWAGGERHUB_KEY }}" \
+          -H "Content-Type: application/yaml" \
+          --data-binary @Backend/openapi.yml
+
+      - name: Trigger render frontend deploy
+        run: |
+          curl ${{ secrets.FRONTEND_DEPLOY }}
+
+      - name: Trigger render backend deploy
+        run: |
+          curl ${{ secrets.BACKEND_DEPLOY }}
+
+      - name: Reset test database
+        run: |
+          sudo systemctl start postgresql.service
+          psql "${{ secrets.DB_CONN_STRING }}" -c 'DROP TABLE "Stance", "Party", "Issue";'
+          echo "Database dropped!"
+          psql "${{ secrets.DB_CONN_STRING }}" -f Backend/10-db-init.sql
+          echo "Init DB complete"
+          psql "${{ secrets.DB_CONN_STRING }}" -f Backend/tests/setup/20-pop-db.sql
+          echo "Pop DB complete"
