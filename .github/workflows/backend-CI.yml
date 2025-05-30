@@ -23,10 +23,12 @@ jobs:
         working-directory: Backend/
 
       - run: Lint & Fix using Standard
-        name: npx standard --fix Backend/
+      name: |
+        npx standard --fix Backend/
       
       - name: Check for remainding lint errors
-        run: npx standard Backend/
+        run: |
+          npx standard Backend/
         continue-on-error: false
 
       - name: Begin running tests
