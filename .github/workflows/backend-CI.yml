@@ -22,14 +22,26 @@ jobs:
       - run: npm i
         working-directory: Backend/
 
-      - run: Lint & Fix using Standard
-      name: |
+      - name: Lint & Fix using Standard
+        run: |
         npx standard --fix Backend/
       
       - name: Check for remainding lint errors
+        id: lint
+        continue-on-error: true
         run: |
           npx standard Backend/
-        continue-on-error: false
+
+      - name: Push changed code if lint fails
+        if: steps.lint.outcome == 'failure'
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "Fixed some lint errors"
+          git push
+
+
 
       - name: Begin running tests
         run: ENV=test npx jest unit --coverage
