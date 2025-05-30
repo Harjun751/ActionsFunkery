@@ -3,7 +3,6 @@ const secrets = require('./secrets')
 const logger = require('../logger')
 
 const user = secrets.getUser()
-const pw = secrets.getPassword()
 
 let pool
 
