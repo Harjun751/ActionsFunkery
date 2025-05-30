@@ -23,14 +23,15 @@ jobs:
         working-directory: Backend/
 
       - name: Lint & Fix using Standard
+        continue-on-error: true
         run: |
-          npx standard --fix Backend/
+          npx standard --fix --env=jest Backend/ 
       
       - name: Check for remainding lint errors
         id: lint
         continue-on-error: true
         run: |
-          npx standard Backend/
+          npx standard --env=jest Backend/ 
 
       - name: Push changed code if lint fails
         if: steps.lint.outcome == 'failure'
@@ -40,6 +41,8 @@ jobs:
           git add .
           git commit -m "Fixed some lint errors"
           git push
+          echo "Exiting workflow due to remaining lint errors"
+          exit 1
 
 
 
