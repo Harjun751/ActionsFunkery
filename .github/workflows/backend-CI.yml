@@ -24,7 +24,7 @@ jobs:
 
       - name: Lint & Fix using Standard
         run: |
-        npx standard --fix Backend/
+          npx standard --fix Backend/
       
       - name: Check for remainding lint errors
         id: lint
